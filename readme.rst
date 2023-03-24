@@ -5,8 +5,11 @@ Naylib - Your Nimble Companion for Game Development Adventures
 Welcome to this repository! Here you'll find a Nim wrapper for raylib, a library for
 creating 2D and 3D games. The Nim API is designed to be user-friendly and easy to use.
 
-  **WARNING**: Currently Naylib only works with Nim version 2.0 which is expected to be released soon.
+  **WARNING 1**: Currently Naylib only works with Nim version 2.0 which is expected to be released soon.
   Use a `nightlies build <https://github.com/nim-lang/nightlies/releases>`_ in the meantime.
+
+  **WARNING 2**: Windows support is experimental and only available through the windows branch.
+  Refer to Installation for details on using nimble to install.
 
 Documentation
 =============
@@ -24,7 +27,7 @@ If you're familiar with the C version of raylib, you may find the
 Installation
 ============
 
-To install this wrapper, simply run ``nimble install naylib``.
+To install this wrapper, run ``nimble install naylib``. For Windows, use ``nimble install naylib@#windows`` instead.
 
 Examples
 ========
@@ -268,12 +271,19 @@ Integration of External Data Types with ShaderV and Pixel
 The concepts of ``ShaderV`` and ``Pixel`` permit the integration of external data types
 into procs that employ them, such as ``setShaderValue`` and ``updateTexture``.
 
+Using IsReady() in Asset Loading
+--------------------------------
+
+To prevent unexpected behavior or crashes, Load() functions utilize IsReady() to confirm
+asset loading success and raise ``RaylibError`` if an asset is not found. This approach
+ensures that the program not only logs an error but also immediately takes action to
+handle it appropriately.
+
 Math Libraries and Integer Vector Type in Naylib
 ------------------------------------------------
 
 In addition to porting the ``raymath`` and ``reasings`` libraries to Nim, Naylib also
-provides math operators like ``+``, ``*``, ``-=`` for convenience. Furthermore, Naylib
-introduces an integer vector type called ``IndexN`` to facilitate operations with indices.
+provides math operators like ``+``, ``*``, ``-=`` for convenience.
 
 Alternatives
 ============
